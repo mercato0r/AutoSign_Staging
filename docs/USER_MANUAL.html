@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panduan Pengguna AutoSign Pro</title>
+<style>
+  @page {
+    size: A4 portrait;
+    margin: 22mm 18mm 22mm 18mm;
+  }
+  
+  * {
+    box-sizing: border-box;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 10.5pt;
+    line-height: 1.6;
+    color: #1e293b;
+    background-color: #ffffff;
+    margin: 0;
+    padding: 0;
+  }
+
+  .header-cover {
+    border-bottom: 2px solid #007ac2;
+    padding-bottom: 18px;
+    margin-bottom: 24px;
+  }
+
+  h1 {
+    font-size: 24pt;
+    font-weight: 700;
+    color: #007ac2;
+    margin: 0 0 8px 0;
+    letter-spacing: -0.5px;
+  }
+
+  .subtitle {
+    font-size: 11pt;
+    color: #475569;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    background-color: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    font-size: 9pt;
+    font-weight: 600;
+    color: #334155;
+    margin-top: 8px;
+  }
+
+  h2 {
+    font-size: 14pt;
+    font-weight: 700;
+    color: #0f172a;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 6px;
+    margin-top: 26px;
+    margin-bottom: 12px;
+    page-break-after: avoid;
+  }
+
+  h3 {
+    font-size: 11.5pt;
+    font-weight: 600;
+    color: #1e293b;
+    margin-top: 18px;
+    margin-bottom: 8px;
+    page-break-after: avoid;
+  }
+
+  p {
+    margin: 0 0 10px 0;
+    text-align: justify;
+  }
+
+  ul, ol {
+    margin: 0 0 12px 0;
+    padding-left: 24px;
+  }
+
+  li {
+    margin-bottom: 6px;
+  }
+
+  code {
+    font-family: "Consolas", "Courier New", monospace;
+    font-size: 9.5pt;
+    background-color: #f1f5f9;
+    color: #0f172a;
+    padding: 2px 5px;
+    border-radius: 3px;
+    border: 1px solid #e2e8f0;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0 18px 0;
+    font-size: 9.5pt;
+    page-break-inside: avoid;
+  }
+
+  th {
+    background-color: #f8fafc;
+    color: #0f172a;
+    font-weight: 600;
+    text-align: left;
+    padding: 8px 12px;
+    border: 1px solid #cbd5e1;
+  }
+
+  td {
+    padding: 8px 12px;
+    border: 1px solid #cbd5e1;
+    vertical-align: top;
+  }
+
+  tr:nth-child(even) td {
+    background-color: #f8fafc;
+  }
+
+  .callout {
+    background-color: #f8fafc;
+    border-left: 4px solid #007ac2;
+    padding: 10px 14px;
+    margin: 12px 0;
+    font-size: 9.5pt;
+    color: #334155;
+    page-break-inside: avoid;
+  }
+
+  .callout-warning {
+    border-left-color: #d97706;
+    background-color: #fffbeb;
+    color: #92400e;
+  }
+
+  .section-block {
+    page-break-inside: avoid;
+  }
+</style>
+</head>
+<body>
+
+<div class="header-cover">
+  <h1>PANDUAN PENGGUNA AUTOSIGN PRO</h1>
+  <p class="subtitle">Dokumentasi Pengoperasian dan Standar Prosedur Penandatanganan Dokumen PDF Massal</p>
+  <span class="badge">Versi Rilis 3.2.0</span>
+  <span class="badge">Edisi Dokumentasi: Oktober 2026</span>
+</div>
+
+<p>AutoSign Pro adalah perangkat lunak otomasi untuk penandatanganan dan pembubuhan stempel secara massal (batch processing) pada dokumen berformat PDF. Aplikasi ini dilengkapi dengan perancang tata letak visual (Visual Layout Designer), pengenalan kata kunci profil, eksekusi paralel multi-core, dan penempatan tanda tangan multi-halaman.</p>
+
+<h2>1. Persyaratan Sistem dan Persiapan Berkas</h2>
+
+<h3>1.1 Persyaratan Sistem</h3>
+<ul>
+  <li><strong>Sistem Operasi</strong>: Windows 10 atau Windows 11 (arsitektur 64-bit).</li>
+  <li><strong>Prosesor</strong>: Intel atau AMD multi-core (disarankan minimal 4 core untuk performa eksekusi paralel optimal).</li>
+  <li><strong>Memori RAM</strong>: Minimal 4 GB (disarankan 8 GB atau lebih untuk pemrosesan dokumen beresolusi tinggi).</li>
+  <li><strong>Penyimpanan</strong>: Minimal 500 MB untuk aplikasi dan berkas temporer, di luar kapasitas penyimpanan dokumen PDF.</li>
+</ul>
+
+<h3>1.2 Struktur Direktori yang Diperlukan</h3>
+<p>Sebelum menjalankan aplikasi, persiapkan tiga direktori utama pada media penyimpanan komputer:</p>
+<ol>
+  <li><strong>Folder PDF Master (Dokumen Sumber)</strong><br>
+  Folder tempat menyimpan seluruh berkas PDF asli yang akan dibubuhi tanda tangan atau stempel. Folder ini dapat memiliki struktur subfolder bertingkat (misalnya berdasarkan divisi, tahun, atau nomor proyek).</li>
+  <li><strong>Folder Master Tanda Tangan (Signature Root)</strong><br>
+  Folder tempat menyimpan seluruh berkas gambar tanda tangan, paraf, atau stempel. Berkas harus berformat PNG dengan latar belakang transparan. Nama berkas (tanpa ekstensi .png) harus sama persis dengan nama label yang ditentukan pada profil tata letak.</li>
+  <li><strong>Folder Output (Hasil Pemrosesan)</strong><br>
+  Folder tujuan untuk menampung berkas PDF yang telah selesai diproses. Struktur subfolder dari Folder PDF Master akan diduplikasi secara otomatis ke dalam Folder Output.</li>
+</ol>
+
+<h2>2. Mekanisme Pencarian Berkas Tanda Tangan (3-Tier Resolver)</h2>
+<p>AutoSign Pro menerapkan algoritma pencarian hierarkis 3 tingkat untuk menemukan berkas gambar tanda tangan (.png) yang sesuai bagi setiap dokumen:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="width: 25%;">Tingkat Pencarian</th>
+      <th style="width: 35%;">Mekanisme Kerja</th>
+      <th style="width: 40%;">Contoh Jalur File</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Tingkat 1: Subfolder Identik</strong></td>
+      <td>Sistem mencari berkas gambar pada subfolder di Master Tanda Tangan yang jalurnya identik dengan jalur subfolder dokumen PDF terhadap PDF Master.</td>
+      <td><code>Master_TTD/Divisi_A/TTD_Manager.png</code> untuk berkas <code>PDF_Master/Divisi_A/Laporan.pdf</code>.</td>
+    </tr>
+    <tr>
+      <td><strong>Tingkat 2: Segmen Parent Terdekat (Reverse Walk)</strong></td>
+      <td>Jika berkas tidak ditemukan di tingkat 1, sistem memeriksa folder induk secara bertingkat dari subfolder terdalam hingga direktori di atasnya.</td>
+      <td>Memeriksa <code>Master_TTD/Proyek_X/TTD_Manager.png</code>, lalu <code>Master_TTD/Divisi_A/TTD_Manager.png</code>.</td>
+    </tr>
+    <tr>
+      <td><strong>Tingkat 3: Root Master Fallback</strong></td>
+      <td>Jika berkas belum ditemukan pada seluruh subfolder, sistem mengambil berkas tanda tangan umum yang berada langsung di direktori utama Master Tanda Tangan.</td>
+      <td><code>Master_TTD/TTD_Manager.png</code>.</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="callout callout-warning">
+  <strong>Perhatian:</strong> Apabila setelah ketiga tingkat tersebut berkas gambar tanda tangan tidak ditemukan, sistem akan mencatat peringatan pada log dan melewati dokumen terkait untuk menjaga integritas data dokumen asli.
+</div>
+
+<h2>3. Panduan Penggunaan Visual Layout Designer</h2>
+<p>Visual Layout Designer digunakan untuk menentukan posisi, ukuran, dan target halaman bagi setiap tanda tangan atau stempel pada dokumen PDF secara visual dan akurat.</p>
+
+<h3>3.1 Membuka Layout Designer</h3>
+<ol>
+  <li>Pada jendela utama aplikasi, klik tombol <strong>Create New Profile</strong> untuk membuat profil baru, atau klik tombol <strong>Edit</strong> pada baris profil yang sudah ada.</li>
+  <li>Jendela Layout Designer akan terbuka secara maksimal (maximized) untuk memudahkan penataan visual.</li>
+</ol>
+
+<h3>3.2 Memuat Berkas PDF Contoh</h3>
+<ol>
+  <li>Klik tombol <strong>Buka PDF Contoh</strong> pada panel bilah sisi kiri.</li>
+  <li>Pilih salah satu berkas PDF yang mewakili format dokumen yang akan diproses secara massal.</li>
+  <li>Halaman dokumen akan dirender pada lembar kerja kanvas di sebelah kanan.</li>
+</ol>
+
+<h3>3.3 Konfigurasi Identitas Profil</h3>
+<ul>
+  <li><strong>Profile Name</strong>: Masukkan nama profil yang unik dan deskriptif (misalnya <code>Profil_Surat_Keputusan</code> atau <code>Profil_Kuitansi</code>).</li>
+  <li><strong>Keywords (Dipisahkan koma)</strong>: Masukkan satu atau beberapa kata kunci pencocokan (misalnya <code>SK, KEPUTUSAN, SURAT</code>). Setiap berkas PDF di folder sumber yang memuat kata kunci tersebut pada nama berkasnya akan otomatis diproses menggunakan profil ini.</li>
+</ul>
+
+<h3>3.4 Navigasi Halaman Dokumen</h3>
+<p>Dokumen PDF dapat terdiri dari satu atau banyak halaman:</p>
+<ul>
+  <li>Gunakan tombol panah kiri <code>[ &lt; ]</code> untuk berpindah ke halaman sebelumnya.</li>
+  <li>Gunakan tombol panah kanan <code>[ &gt; ]</code> untuk berpindah ke halaman berikutnya.</li>
+  <li>Indikator halaman menampilkan informasi posisi halaman aktif saat ini (misalnya <code>Hal: 1 / 5</code>).</li>
+  <li>Setiap kotak tanda tangan yang ditambahkan akan terikat secara otomatis pada nomor halaman aktif saat kotak tersebut dibuat.</li>
+</ul>
+
+<h3>3.5 Manajemen Kotak Tanda Tangan (Bounding Box)</h3>
+<ul>
+  <li><strong>Menambah Kotak Baru</strong>: Klik tombol <strong>Kotak Baru</strong> pada sidebar. Kotak berwarna akan muncul di area tengah dokumen.</li>
+  <li><strong>Menggeser Posisi Kotak</strong>: Arahkan kursor ke dalam area kotak, tekan dan tahan klik kiri mouse, lalu geser kotak ke posisi yang dituju.</li>
+  <li><strong>Mengubah Ukuran Kotak (Resize)</strong>: Klik pada kotak untuk mengaktifkannya. Pegangan sudut (resize handle) berbentuk persegi kecil akan muncul di sudut kanan bawah kotak. Tarik pegangan tersebut dengan klik kiri mouse untuk menyesuaikan ukuran.</li>
+  <li><strong>Mengubah Label Kotak</strong>: Pilih kotak yang akan diubah, kemudian klik tombol <strong>Label</strong>. Masukkan nama label tanda tangan tanpa ekstensi .png (misalnya <code>TTD_Direktur</code> atau <code>STEMPEL_LEMBAGA</code>).</li>
+  <li><strong>Menghapus Kotak</strong>: Pilih kotak yang ingin dihapus, kemudian klik tombol <strong>Hapus</strong>.</li>
+</ul>
+
+<h3>3.6 Navigasi Kanvas dan Kontrol Tampilan</h3>
+<ul>
+  <li><strong>Perbesaran Skala (Zoom In / Zoom Out)</strong>: Klik tombol <code>[ + ]</code> untuk memperbesar atau tombol <code>[ - ]</code> untuk memperkecil. Anda juga dapat menggunakan pintasan cepat <code>Ctrl + Scroll Roda Mouse</code>. Sistem menerapkan mekanisme debouncing otomatis sehingga tampilan diperbarui secara halus tanpa lag.</li>
+  <li><strong>Menggeser Lembar Kerja (Panning)</strong>: Tekan dan tahan tombol <strong>Klik Kanan Mouse (Drag Button-3)</strong> di atas kanvas, lalu geser mouse ke arah yang diinginkan. Anda juga dapat menggunakan tombol klik tengah mouse (Button-2).</li>
+  <li><strong>Pembatalan dan Pengulangan Aksi (Undo / Redo)</strong>: Batalkan aksi terakhir menggunakan tombol <strong>Undo</strong> pada sidebar atau kombinasi tombol <code>Ctrl + Z</code>. Ulangi aksi yang dibatalkan dengan tombol <strong>Redo</strong> atau kombinasi <code>Ctrl + Y</code> / <code>Ctrl + Shift + Z</code>.</li>
+  <li><strong>Tooltip Penjelasan</strong>: Arahkan kursor mouse ke tombol apa pun pada sidebar untuk membaca deskripsi singkat fungsi tombol tersebut.</li>
+</ul>
+
+<h3>3.7 Menyimpan Profil</h3>
+<p>Setelah penataan posisi selesai, klik tombol <strong>Simpan Profil</strong> di bagian bawah sidebar. Konfigurasi disimpan ke dalam berkas <code>profiles/&lt;Nama_Profil&gt;.json</code>. Jendela perancang dapat ditutup setelah dialog konfirmasi berhasil ditampilkan.</p>
+
+<h2>4. Panduan Eksekusi Pemrosesan Massal (Batch Processing)</h2>
+
+<h3>4.1 Pemilihan Profil Aktif</h3>
+<ol>
+  <li>Pada bagian <strong>Profile Management</strong> di Jendela Utama, centang profil-profil yang ingin digunakan.</li>
+  <li>Gunakan tombol <strong>Toggle All</strong> untuk memilih atau membatalkan pilihan seluruh profil sekaligus.</li>
+  <li>Label penghitung menampilkan status profil yang dipilih (misalnya <code>(2/3 Selected)</code>).</li>
+</ol>
+
+<h3>4.2 Pengaturan Jalur Direktori (Path Configuration)</h3>
+<p>Tentukan ketiga jalur direktori kerja melalui tombol <strong>Browse</strong>:</p>
+<ul>
+  <li><strong>PDF Root Folder</strong>: Direktori sumber dokumen PDF.</li>
+  <li><strong>Signature Root</strong>: Direktori master gambar tanda tangan/stempel.</li>
+  <li><strong>Output Folder</strong>: Direktori tujuan hasil pemrosesan.</li>
+</ul>
+<div class="callout">
+  <strong>Informasi:</strong> Seluruh konfigurasi direktori tersimpan secara otomatis pada berkas <code>settings.json</code> lokal sehingga tidak perlu dipilih ulang pada sesi kerja berikutnya.
+</div>
+
+<h3>4.3 Opsi Tambahan: Lewati Berkas yang Sudah Ada (Skip Existing)</h3>
+<p>Aktifkan opsi <strong>Skip Existing Files</strong> untuk efisiensi waktu. Apabila opsi ini aktif, dokumen PDF yang nama dan jalurnya sudah terdapat di folder output akan otomatis dilewati.</p>
+
+<h3>4.4 Menjalankan dan Menghentikan Proses</h3>
+<ul>
+  <li><strong>Menjalankan Proses</strong>: Klik tombol <strong>RUN PROCESS</strong>. Sistem akan memindai folder PDF sumber secara rekursif, mencocokkan kata kunci setiap dokumen dengan profil yang aktif, dan memproses dokumen menggunakan multi-threading.</li>
+  <li><strong>Indikator Kemajuan</strong>: Batang kemajuan (Progress Bar) dan label status akan diperbarui secara teratur hingga proses selesai 100%.</li>
+  <li><strong>Menghentikan Proses</strong>: Klik tombol <strong>STOP</strong> apabila ingin menghentikan antrean pemrosesan di tengah jalan. Sistem menghentikan tugas berikutnya dengan aman tanpa merusak berkas yang sedang ditulis.</li>
+  <li><strong>Membuka Hasil</strong>: Klik tombol <strong>OPEN OUTPUT</strong> untuk membuka Folder Output secara langsung di Windows File Explorer setelah proses tuntas.</li>
+</ul>
+
+<h2>5. Ringkasan Pintasan Papan Ketik (Keyboard Shortcuts)</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="width: 35%;">Kombinasi Tombol</th>
+      <th style="width: 25%;">Area Kerja</th>
+      <th style="width: 40%;">Fungsi</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>Ctrl + Z</code></td>
+      <td>Layout Designer</td>
+      <td>Membatalkan aksi terakhir (Undo)</td>
+    </tr>
+    <tr>
+      <td><code>Ctrl + Y</code></td>
+      <td>Layout Designer</td>
+      <td>Mengulang aksi yang dibatalkan (Redo)</td>
+    </tr>
+    <tr>
+      <td><code>Ctrl + Shift + Z</code></td>
+      <td>Layout Designer</td>
+      <td>Alternatif mengulang aksi yang dibatalkan (Redo)</td>
+    </tr>
+    <tr>
+      <td><code>Ctrl + Scroll Mouse Up</code></td>
+      <td>Layout Designer</td>
+      <td>Memperbesar tampilan dokumen (Zoom In)</td>
+    </tr>
+    <tr>
+      <td><code>Ctrl + Scroll Mouse Down</code></td>
+      <td>Layout Designer</td>
+      <td>Memperkecil tampilan dokumen (Zoom Out)</td>
+    </tr>
+    <tr>
+      <td><code>Klik Kanan + Geser (Drag)</code></td>
+      <td>Layout Designer</td>
+      <td>Menggeser lembar kerja kanvas (Panning)</td>
+    </tr>
+    <tr>
+      <td><code>Klik Tengah + Geser (Drag)</code></td>
+      <td>Layout Designer</td>
+      <td>Alternatif menggeser lembar kerja kanvas (Panning)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>6. Pemecahan Masalah (Troubleshooting)</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="width: 30%;">Gejala Masalah</th>
+      <th style="width: 35%;">Penyebab</th>
+      <th style="width: 35%;">Solusi Rekomendasi</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Log menampilkan pesan:<br><code>MISSING: &lt;label&gt;.png</code></td>
+      <td>Berkas gambar tanda tangan berformat PNG tidak ditemukan pada hierarki folder Master Tanda Tangan.</td>
+      <td>Pastikan nama berkas gambar sama persis dengan nama label pada profil (huruf besar/kecil berpengaruh) dan berekstensi <code>.png</code>.</td>
+    </tr>
+    <tr>
+      <td>Pesan galat dokumen kosong atau rusak.</td>
+      <td>Berkas PDF sumber memiliki ukuran 0 byte atau rusak saat proses pemindaian/unduhan.</td>
+      <td>Buka berkas sumber dengan penampil PDF standar untuk memastikan keutuhan berkas. Ganti berkas jika rusak.</td>
+    </tr>
+    <tr>
+      <td>Halaman PDF memiliki rotasi (misal landscape ke portrait).</td>
+      <td>Halaman dokumen memiliki rotasi internal bawaan (90, 180, atau 270 derajat).</td>
+      <td>AutoSign Pro secara otomatis menghitung matriks derotasi sehingga posisi tanda tangan tetap tegak sesuai orientasi pembacaan.</td>
+    </tr>
+    <tr>
+      <td>Posisi tanda tangan bergeser dari letak seharusnya.</td>
+      <td>Berkas PDF contoh memiliki ukuran halaman atau aspek rasio berbeda dari dokumen aktual.</td>
+      <td>Gunakan berkas PDF contoh yang memiliki dimensi dan ukuran kertas yang identik dengan kelompok dokumen yang diproses.</td>
+    </tr>
+  </tbody>
+</table>
+
+</body>
+</html>
